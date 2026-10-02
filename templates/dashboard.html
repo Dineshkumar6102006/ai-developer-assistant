@@ -1,0 +1,29 @@
+def generate_document(title: str, content: str) -> str:
+    if content.strip():
+        return content
+
+    return f"# {title}\n\n## Overview\nThis project is an AI developer assistant for code assistance, architecture design, debugging, and artifact generation.\n\n## Main Features\n- Chat-based coding assistance\n- Gemini API integration\n- MySQL persistence for user-specific history\n- Document and diagram generation\n- Guest mode and login flow\n\n## Recommended next steps\n1. Define the target workflows\n2. Design the database schema\n3. Integrate API endpoints\n4. Test end-to-end flows\n"
+
+
+def generate_diagram_svg(title: str) -> str:
+    return f"""
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="500" viewBox="0 0 900 500">
+  <rect width="900" height="500" fill="#0f172a" rx="20"/>
+  <text x="450" y="60" font-size="28" fill="#e2e8f0" text-anchor="middle" font-family="Arial">{title}</text>
+  <rect x="60" y="120" width="180" height="90" rx="12" fill="#dbeafe"/>
+  <text x="150" y="175" font-size="22" text-anchor="middle" fill="#0f172a" font-family="Arial">User</text>
+
+  <rect x="360" y="120" width="180" height="90" rx="12" fill="#dcfce7"/>
+  <text x="450" y="175" font-size="22" text-anchor="middle" fill="#0f172a" font-family="Arial">Flask App</text>
+
+  <rect x="660" y="120" width="180" height="90" rx="12" fill="#fef3c7"/>
+  <text x="750" y="175" font-size="22" text-anchor="middle" fill="#0f172a" font-family="Arial">Gemini AI</text>
+
+  <rect x="360" y="320" width="180" height="90" rx="12" fill="#f3e8ff"/>
+  <text x="450" y="375" font-size="22" text-anchor="middle" fill="#0f172a" font-family="Arial">MySQL</text>
+
+  <line x1="240" y1="165" x2="360" y2="165" stroke="#f8fafc" stroke-width="4"/>
+  <line x1="540" y1="165" x2="660" y2="165" stroke="#f8fafc" stroke-width="4"/>
+  <line x1="450" y1="210" x2="450" y2="320" stroke="#f8fafc" stroke-width="4"/>
+</svg>
+"""

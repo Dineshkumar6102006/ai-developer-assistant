@@ -1,0 +1,40 @@
+const chatWindow = document.getElementById('chatWindow');
+const promptInput = document.getElementById('promptInput');
+const sendBtn = document.getElementById('sendBtn');
+
+function addMessage(role, text) {
+  const div = document.createElement('div');
+  div.className = `message ${role}`;
+  div.textContent = text;
+  chatWindow.appendChild(div);
+  chatWindow.scrollTop = chatWindow.scrollHeight;
+}
+
+sendBtn.addEventListener('click', async () => {
+  const prompt = promptInput.value.trim();
+  if (!prompt) return;
+
+  addMessage('user', prompt);
+  promptInput.value = '';
+
+  const response = await fetch('/chat/send', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ prompt })
+  });
+
+  const data = await response.json();
+  addMessage('assistant', data.reply || 'No response');
+});
+
+const logoutBtn = document.getElementById('logoutBtn');
+logoutBtn.addEventListener('click', async () => {
+  await fetch('/auth/logout', { method: 'POST' });
+  window.location.reload();
+});
+
+const guestBtn = document.getElementById('guestBtn');
+guestBtn.addEventListener('click', async () => {
+  await fetch('/auth/guest', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: 'Guest Developer' }) });
+  window.location.reload();
+});

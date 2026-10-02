@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Developer Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <h2>AI Dev Assistant</h2>
+        <p>Hello, {{ user.name }}</p>
+        <button id="guestBtn">Guest Mode</button>
+        <button id="logoutBtn">Logout</button>
+      </aside>
+
+      <main class="main-panel">
+        <div class="chat-window" id="chatWindow"></div>
+        <div class="composer">
+          <textarea id="promptInput" rows="3" placeholder="Ask for code, debugging, architecture, or reports..."></textarea>
+          <button id="sendBtn">Send</button>
+        </div>
+      </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>
